@@ -40,6 +40,14 @@ is a short map of both paths and existing tool links.
 
 ---
 
+## Field notes
+
+**October 2026:** [Let approved work finish](FIELD-NOTES.md). When AI agents should keep
+going, which steps stay with a person, and what changed in this kit. Read it after a first
+task; it is background, not a third way in.
+
+---
+
 ## Keep personalized copies private
 
 Treat these files as **public templates**. Keep your filled-in copy private;

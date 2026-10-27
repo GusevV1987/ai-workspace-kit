@@ -142,8 +142,20 @@ Know these before you start:
 
 ## Permissions and costs
 
-- **Instructions are not locks.** Only a tool's own permission or sandbox setting enforces
-  anything. Find that setting before the first task.
+- **Instructions are not locks.** Only a tool's own permission, sandbox, or hook settings
+  enforce anything, and a hook only as far as you have tested it. Find those settings before
+  the first task. A hook that runs after an action cannot undo it; it can only warn or change
+  what the model is shown.
+- **Approval carries through the task.** Its routine steps need no new approval. Ask again
+  when the effect, target, access, cost, or risk changes materially, or when the approval has
+  expired or been withdrawn. Write the approval and its limits in the brief. A stop written in
+  the brief wins over any general permission here.
+- **Some steps stay with the owner:** signing in, unless the owner has delegated that exact
+  flow in writing, and then only within its limits; a new identity, credential, or wider
+  access; steps only a person can complete, such as passkeys or two-factor prompts; switching
+  accounts, organizations, or seats; spending beyond what was approved; sending, publishing,
+  paying, or deleting without approval; and any required review. No model can grant itself
+  access. Before asking for access, check whether an approved connection already works.
 - **Least access.** Reviewers and researchers only read. Use read-only permissions where the
   tool offers them; otherwise confirm nothing changed. This kit recommends giving helpers
   no broader access than their task needs; the parent relationship does not enforce that.
@@ -151,9 +163,14 @@ Know these before you start:
   a helper's folder or a worktree. Ask the owner for approved access.
 - **Usage adds up.** Every helper and reviewer runs its own conversation on your plan or
   credits, so running several at once multiplies usage.
-- **A limit message is a stop sign.** Keep the draft, report which account and limit stopped
-  the work, and wait for the owner. A model must not log in, switch accounts, or buy credits
-  on its own. Room left on one account or meter does not cover another.
+- **A limit stops one route.** A usage limit stops work on the tool and account that hit it.
+  Keep the draft and report which account and limit stopped the work. If the brief lists a
+  usage limit as a stop, that stop wins: stop and ask the owner. Otherwise, independent work
+  may continue on another tool the owner already approved for this work and that is already
+  signed in, once you confirm it has room; unknown room counts as none. Another app or model
+  on the same subscription may draw on the same pool. A model must not, on its own, switch
+  accounts, organizations, or seats, buy credits, or use another tool to resume work someone
+  deliberately paused. Room left on one account or meter does not cover another.
 - **Pick models by task.** Use a capable model you have for planning, judgment, and final
   review. Try a cheaper or faster setting on repeatable work only after comparing results.
   There is no universal best model and no rule to split usage evenly.
@@ -171,7 +188,7 @@ Re-read the brief and the current files first. Files are the record; chat memory
 ### Before interrupted work continues
 
 Use these steps, in order, for a usage limit, a failed helper, or any stopped writer.
-Nothing continues and no replacement starts until step 3.
+The interrupted work does not continue, and no replacement starts, until step 3.
 
 1. **Stop the affected writer first.** Check its status: an automatic retry may already be
    running. Stop that thread, cancel its pending retry, and confirm it is no longer running.
@@ -189,8 +206,18 @@ Nothing continues and no replacement starts until step 3.
 
 **Usage limit mid-draft**
 
-1. Keep the partial draft. Report the account and the limit. Do not switch accounts.
-2. Follow the steps above before anything continues, including after the limit resets.
+1. Keep the partial draft. Report the account and the limit. Do not sign in to another
+   account or switch accounts.
+2. If the brief lists a usage limit as a stop, stop as it says and ask the owner. Otherwise,
+   work that does not need this tool may continue; see
+   [Permissions and costs](#permissions-and-costs).
+3. Before the draft continues anywhere, including on the same tool after the limit resets,
+   complete the three steps above. Moving it to another approved tool is the single
+   replacement those steps allow, made only after the old writer is stopped and its effects
+   are reconciled.
+4. If another model family continues the draft, every family whose work remains in it counts
+   as a writer, and none of them can review it. Another app of the same family is not a new
+   family. If no approved reviewer from another family is left, hold the review.
 
 **Helper failed, stopped, or went quiet**
 
@@ -213,8 +240,10 @@ back. Text that exists only in chat is `not saved`.
 ## Where this comes from
 
 Core references checked in September 2026. BB permission inheritance and pending-retry
-behaviour rechecked against 0.45.0 on October 8, 2026; other references retain their earlier
-date. Vendor pages and app interfaces change; re-check a detail before relying on it.
+behaviour rechecked against 0.45.0 on October 8, 2026. Hook and usage-pool details checked on
+October 27, 2026; other references retain their earlier date. Vendor pages and app interfaces
+change; re-check a detail before relying on it. The reasoning behind the October 27 changes
+is in [FIELD-NOTES.md](FIELD-NOTES.md).
 
 | Point | Basis |
 |-------|-------|
@@ -224,7 +253,9 @@ date. Vendor pages and app interfaces change; re-check a detail before relying o
 | Helpers multiply usage | Vendor docs: [Claude Code costs](https://code.claude.com/docs/en/costs); [Codex subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents) |
 | bb permission inheritance and pending retries | bb 0.45.0 official guides: [threads](https://github.com/get-bb/bb/blob/desktop-v0.45.0/packages/templates/src/templates/bb-guide-threads.md), [providers](https://github.com/get-bb/bb/blob/desktop-v0.45.0/packages/templates/src/templates/bb-guide-providers.md); checked Oct 8, 2026 |
 | Other bb worktree and plugin guidance | September reference, bb 0.43.1: [environments](https://github.com/get-bb/bb/blob/desktop-v0.43.1/packages/templates/src/templates/bb-guide-environments.md), [configuration](https://github.com/get-bb/bb/blob/desktop-v0.43.1/docs/configuration.md), [Tasks](https://github.com/get-bb/bb/blob/desktop-v0.43.1/plugins/tasks/PLUGIN_OVERVIEW.md), [Workflows](https://github.com/get-bb/bb/blob/desktop-v0.43.1/plugins/workflows/PLUGIN_OVERVIEW.md); verify against your installed version |
+| A hook can block before an action; after it, a hook cannot undo the action but can change what the model is shown | Vendor docs: [Claude Code hooks](https://code.claude.com/docs/en/hooks); [Codex hooks](https://learn.chatgpt.com/docs/hooks); checked Oct 27, 2026 |
+| Apps and models on one subscription can share a usage pool | Vendor docs: [Cursor models and pricing](https://cursor.com/docs/models-and-pricing); checked Oct 27, 2026 |
 | Fresh reviews caught problems that earlier passes missed; review rounds that added scope created new problems | The author's own project experience in 2026. Not a benchmark |
-| Different-family review, one writer, three rounds, `unverified` labels | This kit's recommendation, not a vendor requirement |
+| Different-family review, one writer, three rounds, `unverified` labels, approval through the task, a brief's stop winning, a limit stopping one route | This kit's recommendation, not a vendor requirement |
 
 No speed, quality, or cost benefit is measured or promised here.

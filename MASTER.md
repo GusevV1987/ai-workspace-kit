@@ -23,6 +23,9 @@
 
 - Direct recommendations over long brainstorms.
 - If you do not know, say so and how to check.
+- Once I approve a task, carry it through; its routine steps need no new approval. Ask again when the effect, target, access, cost, or risk changes. A stop written into a task's brief wins over this.
+- Items under "Ask first" need my approval for that exact action. An exact approval I have already given, such as one delegated sign-in flow, stays valid within its written limits until it expires or I withdraw it. No model can grant itself access.
+- Fit checks to the change, and keep every check the project requires.
 - Prefer a capable model for important work. Do not pin a vendor's current model ID in this file.
 - Quality over speed for planning and debugging. Faster models only for low-stakes bulk work.
 
@@ -71,7 +74,7 @@ Ordinary access to this folder does **not** authorize reading or exposing secret
 Do not open credential files (`*.env`, `credentials.*`, `*.pem`, `id_rsa`, and similar)
 unless I explicitly name that file and ask.
 
-Ask first: deleting user data; production config; broad refactors.
+Ask first: signing in, new credentials, or new access; switching accounts, organizations, or seats; sending, publishing, paying, or spending beyond what I approved; deleting user data; production config; broad refactors.
 
 Never: print credentials; commit secrets; claim done without a check.
 
@@ -89,4 +92,4 @@ Before you share any copy, review every file, its metadata, and any git history 
 
 ---
 
-*Last updated: 2026-09-08*
+*Last updated: 2026-10-27*

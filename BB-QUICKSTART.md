@@ -185,10 +185,10 @@ huddle filled in, is [examples/task-brief.md](examples/task-brief.md).
 | Problem | What to do |
 |---------|------------|
 | Model cannot see files | Attach or paste the actual contents of `MASTER.md` **and** `AGENTS.md`, `START.md`, `skills/close/SKILL.md`, `MEMORY.md`, `memory/handoff.md`, `memory/open.md`, and the current log or `memory/_TEMPLATE.md` if needed. |
-| Provider missing or signed out | Use approved access. Ask the workspace owner. The model cannot create that access. |
+| Provider missing or signed out | Use approved access. Ask the workspace owner. No model can grant itself that access. |
 | `/close` or `/start` does nothing | Type `wrap up` or `Read START.md and begin.` Slash commands are optional. |
 | Draft only in chat | That is **not saved**. Paste it into `drafts/friday-huddle.md` yourself, or ask for exact paste text with destinations named. |
 | Unsure whose row to edit | Leave unrelated `open.md` rows alone. |
-| Usage-limit message mid-draft | Keep the draft and treat it as unverified. Do not switch accounts. Find the affected thread's pending retry above the message box, with its reason and time. Check and cancel it before continuing; restarting the app does not cancel it. See [When something breaks](ORCHESTRATION.md#when-something-breaks). |
+| Usage-limit message mid-draft | Keep the draft and treat it as unverified. Do not switch accounts. Find the affected thread's pending retry above the message box, with its reason and time. Check and cancel it before continuing; restarting the app does not cancel it. Whether the draft waits or moves to another tool you already use is your decision, and a stop written in your brief wins. See [When something breaks](ORCHESTRATION.md#when-something-breaks). |
 | Thread failed or went quiet | Read that thread's own last output first. Stop it and cancel any waiting retry before starting a replacement, so two writers cannot resume. |
 | Reviewer's findings lost | Recover them if they were saved. If not, and the draft is unchanged, run the step 4 review again in a new thread. Never assume a pass. |
