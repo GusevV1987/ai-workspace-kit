@@ -1,8 +1,8 @@
 ---
 name: investigate
-description: "Use when encountering any bug or error — forces root cause analysis before fixing instead of guessing."
-version: 2.0.0
-date: 2026-03-19
+description: "Use when something breaks or behaves unexpectedly — diagnose with evidence before fixing, sized to the problem: a short path for a small confirmed cause, full root-cause analysis for an unknown one."
+version: 2.1.0
+date: 2026-10-27
 ---
 
 # Investigate
@@ -14,6 +14,8 @@ date: 2026-03-19
 Investigate first, fix second. No random attempts. No guessing.
 
 If you haven't figured out WHY the bug exists, you are not ready to fix it.
+
+Size the investigation to the problem: a small cause you have already confirmed counts as found (see "Size It to the Problem").
 
 ## When to Use
 
@@ -27,9 +29,17 @@ Any time something breaks, behaves unexpectedly, or produces errors:
 Use this ESPECIALLY when you feel rushed or when the fix seems "obvious."
 Obvious fixes often mask deeper problems.
 
+## Size It to the Problem
+
+Fit the investigation to the problem. "Seems obvious" is not the same as confirmed.
+
+- **Small cause, already confirmed** (you can reproduce the problem and point to the exact cause): take the short path. State the cause and its evidence. Where a meaningful automated test can show the bug, see it fail for the right reason before the fix; a failing test or check you already have counts (see [tdd](../tdd/SKILL.md)). Where none applies, such as a formatting or configuration fix, say so. Then make the smallest fix and rerun the original scenario, the checks covering the change, and every check the project requires.
+- **Cause unknown, intermittent, or recurring:** use the 5 phases below.
+- **Never guess at access.** Do not switch accounts, reset credentials, widen permissions, delete user data, or change production settings to see whether a problem goes away. If the evidence points there, stop and bring it to the owner.
+
 ## The 5 Phases
 
-Complete each phase before moving to the next.
+For an unknown cause, complete each phase before moving to the next.
 
 ### Phase 1: Root Cause Investigation
 
@@ -77,8 +87,8 @@ Output: a **specific, testable claim** about what's wrong and why.
 ### Phase 5: Verify and Record
 
 1. **Reproduce the original scenario** -- confirm the bug is gone.
-2. **Run the full test suite** -- confirm nothing else broke.
-3. **Record the fix** -- if the bug was non-obvious, add it to MEMORY.md as a gotcha.
+2. **Run the checks the change calls for** -- the tests covering the changed behavior, plus every check the project requires. Run the full suite when the change is broad or touches shared code.
+3. **Pass on the lesson** -- if the bug was non-obvious, return it as a gotcha to the designated closer. Only the closer records shared notes, under the [close rules](../close/SKILL.md).
 4. **Never say "this should fix it"** -- prove it with test output.
 
 ## The 3-Strike Rule
@@ -112,4 +122,4 @@ Guessing is not debugging.
 | 2. Pattern Analysis | Compare working vs. broken, match known signatures, check deps | You know WHERE it differs |
 | 3. Form Hypothesis | State theory, confirm with evidence before coding | You know WHY it happens |
 | 4. Targeted Fix | Write test, fix root cause, minimal diff | Bug is gone, nothing else broke |
-| 5. Verify and Record | Reproduce, run full suite, record gotcha | Proven fixed with evidence |
+| 5. Verify and Record | Reproduce, run the checks that fit, pass the gotcha to the closer | Proven fixed with evidence |

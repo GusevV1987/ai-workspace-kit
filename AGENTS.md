@@ -75,7 +75,9 @@ If the tool has no slash commands, say: `Read skills/<name>/SKILL.md and follow 
 ## Boundaries
 
 Never expose credentials or private documents. Never claim a check passed if you did not run it.
-Ask before deleting user data, changing production, or broad multi-file behavior changes.
+Ask before anything on the "Ask first" list in [MASTER.md](MASTER.md), such as signing in,
+switching accounts, spending, deleting user data, changing production, or broad multi-file
+behavior changes.
 
 ---
 
