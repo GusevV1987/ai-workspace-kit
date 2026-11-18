@@ -47,6 +47,73 @@ Rules that keep this safe:
 
 ---
 
+## Place work by job class
+
+This kit's recommendation, not a vendor requirement.
+
+The lead is the most capable model you have for this kind of work. It owns the goal, the
+decisions, reading every helper's result, and the answer to you. Hard work stays with it.
+Hard work moves to another model only when that model is at least as capable for that task,
+never because it is cheaper or its subscription has room.
+
+| Job | What it looks like | Start with | Step up when |
+|-----|--------------------|------------|--------------|
+| **Routine** | Fetch, list, extract, reformat, inventory, a bulk read with a short answer. A quick look or a script can check it. | A tool or script first. Otherwise the smallest current model you have, at a low or medium reasoning level. Never a paid speed tier. | One check fails. |
+| **Everyday** | Research, drafting, sweeps, analysis, routine code with tests, a second opinion. | A balanced current model. A stronger one when the brief is long or full of instructions. | One check fails, or the work turns out ambiguous. |
+| **Hard** | Ambiguous design, hard debugging, a result that is hard to check, writing anything that will be formally reviewed. | The lead itself, or a model whose vendor documents it as at least as capable for this kind of task. | The highest setting only when the owner asks. |
+| **Formal review** | The check on consequential work. | A reviewer from a different model family, started fresh ([Get an independent review](#get-an-independent-review)). | No step. |
+| **Head** | The conversation the owner opened. | The owner's model and setting, kept. | No step. |
+
+Unsure between two rows: take the lower one and write the check that would catch a miss.
+
+1. **Keep the head lean.** Claude Code's documentation says it sends the full conversation
+   with every request, so there the head's length drives its usage. Treat a long head the
+   same way in any tool unless its vendor says otherwise. Keep one goal per head, read long files by section,
+   and send bulk reading and long tool output to a helper that returns a short answer and
+   a file path. After about a day of work, about 150 requests, or a second automatic
+   summary of the conversation, save a short checkpoint
+   ([examples/task-brief.md](examples/task-brief.md#optional-checkpoint-for-ongoing-work))
+   and start a fresh conversation from it. For one request, see
+   [Keep threads short](MODEL-CHOICE.md#keep-threads-short).
+2. **Helpers start low and step up on evidence.** Give each helper one written brief and
+   run its check. On a failure, do one bounded repair; if that fails, stop that helper,
+   cancel its retries, and move one row up. Never start at the top to be safe.
+3. **Faster service buys waiting time only.** A fast tier costs more allowance or separate
+   credits, and in some tools turning it on changes the model. Use it when a person or a
+   blocked step is waiting, never for routine work. Before turning it on, check which model
+   you will get and how your plan bills it. See
+   [Reasoning level and Fast mode](MODEL-CHOICE.md#reasoning-level-and-fast-mode).
+4. **Send work where there is room.** Before delegating, read each subscription's usage
+   meter ([See your usage](MODEL-CHOICE.md#see-your-usage)). Room decides where routine and
+   everyday work goes. It never moves the lead or the hard work, and it never changes a
+   setting. Unknown room is not room.
+5. **One independent check, sized to risk.** One check is enough, and its size follows the
+   risk. Use the triage under [Get an independent review](#get-an-independent-review)
+   ([Review, tests, or skip](#review-tests-or-skip)). For consequential work, reserve the
+   reviewer before you choose the writer: an approved reviewer whose model family will write
+   none of it. If you have only one family, use your team's human review and leave the
+   independent model review pending.
+
+Rules name no model. Models change with every release. Keep model names out of rule files.
+Keep one dated note of today's names and settings
+([Today's names](MODEL-CHOICE.md#todays-names)) and refresh it on a release, an app
+upgrade, or a failed run, from the vendor's current page. Older names that remain in a
+picker are in [Older models in the picker](MODEL-CHOICE.md#older-models-in-the-picker).
+
+Teammates who only need to choose a model for a request read
+[MODEL-CHOICE.md](MODEL-CHOICE.md#pick-the-model-for-the-request).
+
+## Size the job before you build
+
+Name the result and the first real item. Get that one item through the whole path, rough,
+with what you already have. Only then harden.
+
+Before you build tooling, write five lines: the outcome, what is out of scope, the chosen
+approach and its risks, the evidence that will show it works, and the budget. Default to
+the thinnest thing that works, often a written procedure. Stop and re-plan at the third
+rework or re-review cycle on one artifact, or when you are fixing the scaffolding instead
+of the task.
+
 ## Write a brief
 
 Do not assume a helper receives your chat. Put the original inputs in the brief or in files
@@ -63,6 +130,20 @@ reviewer fresh: a new conversation, not a fork. Copy the template and the filled
 ---
 
 ## Get an independent review
+
+### Review, tests, or skip
+
+This kit's recommendation, not a vendor requirement. Sort the change first.
+
+- **Review.** Anything sent, published, paid, or deleted. Access, money, people, records,
+  or live systems. A different family reviews it, at any size.
+- **Tests carry.** Routine bounded work that a test suite fully exercises ships on green
+  tests, and you say so.
+- **Skip.** Typos, comments, formatting, and scratch.
+
+A change to the wording of your own rules or skills is approved by the owner, shown before
+and after in plain words. A second model's pass does not replace that yes. Code and
+settings in the same change keep their own tier.
 
 1. Start a **new** conversation for the reviewer, not a copy or fork of the writer's.
 2. Give it the original inputs, the exact artifact (file path or pasted text), and the checklist.
@@ -140,6 +221,44 @@ Know these before you start:
 
 ---
 
+## The same roles in every app
+
+The roles above are the same in each app. What changes is how a helper is started. This
+kit's recommendation, not a vendor requirement. The two inheritance paragraphs are what
+the vendor pages say, and no further.
+
+| App | Helpers | Independent check |
+|-----|---------|-------------------|
+| **bb** | Visible child threads. Start each one with the provider, the model, the reasoning level, and the speed tier named. | A reviewer from another family, started fresh. |
+| **Claude Code and the Claude desktop app's Code tab** | Built-in subagents, with the model and the reasoning level set per job. | A reviewer from another family, started fresh. |
+| **Codex and the ChatGPT desktop app** | Built-in subagents, with the model and the reasoning level named. | A reviewer from another family, started fresh. |
+
+Name the model and the reasoning level on every helper.
+
+Claude Code, read November 18, 2026
+([subagents](https://code.claude.com/docs/en/sub-agents)): by default, a subagent you define
+runs on the same model as the conversation that starts it. When more than one source sets
+a model, the page's order is the call, then the subagent's own model field, then
+`CLAUDE_CODE_SUBAGENT_MODEL`, then the main conversation's model. On the main
+conversation's model, a subagent with no effort of its own runs at the level you pick in
+the session. On another model, that level does not apply. Set the subagent's effort to
+choose it.
+
+Codex, read November 18, 2026
+([subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents)): if you do not
+configure a subagent's model or its reasoning effort, it inherits the parent agent's model
+and reasoning effort. When more than one source sets them, a custom agent file wins; before
+it, the page's order is an explicit spawn value, then the `[agents]` default, then the
+parent's value. If a spawn request or an `[agents]` default selects a model and neither
+sets a reasoning effort, the subagent uses that model's default reasoning effort.
+
+A helper from another vendor is an external job. Give it a brief and files, never an
+assumed shared conversation. Files cross between apps. A chat crosses only when a tool is
+built to copy it, and copying a chat to another vendor needs approval for everything in
+that chat.
+
+---
+
 ## Permissions and costs
 
 - **Instructions are not locks.** Only a tool's own permission, sandbox, or hook settings
@@ -171,9 +290,10 @@ Know these before you start:
   on the same subscription may draw on the same pool. A model must not, on its own, switch
   accounts, organizations, or seats, buy credits, or use another tool to resume work someone
   deliberately paused. Room left on one account or meter does not cover another.
-- **Pick models by task.** Use a capable model you have for planning, judgment, and final
-  review. Try a cheaper or faster setting on repeatable work only after comparing results.
-  There is no universal best model and no rule to split usage evenly.
+  The owner switches accounts or seats by hand. A model never does. A capped seat does not
+  stop work that another approved, signed-in tool can do. Which limit was hit decides what
+  helps: see [When you hit a limit](MODEL-CHOICE.md#when-you-hit-a-limit).
+- **Pick models by task.** See [Place work by job class](#place-work-by-job-class).
 - **Effort, delegation, and speed are separate settings.** Deeper reasoning, letting a model
   start its own helpers, and faster service are different switches, and tools name them differently.
 - **Measure what matters:** accepted quality, total time including review and rework, and the
@@ -192,11 +312,17 @@ The interrupted work does not continue, and no replacement starts, until step 3.
 
 1. **Stop the affected writer first.** Check its status: an automatic retry may already be
    running. Stop that thread, cancel its pending retry, and confirm it is no longer running.
-   Leave unrelated work alone. In BB 0.45.0, pending retries survive a server restart, so
-   restarting the app does not cancel them. The workspace owner can check with
-   `bb provider-retry status <thread-id>` and cancel with
-   `bb provider-retry cancel <thread-id>`; replace `<thread-id>` with the affected thread's ID.
-   Check status again before resuming or starting a replacement.
+   Leave unrelated work alone. In bb 0.49.0 the automatic retry continues the failed turn in
+   the same thread, with the model selection it had. A turn gets at most four automatic
+   retries. A reset farther away than the configured maximum wait (six hours by default) is
+   not retried. A retry may run after the first attempt already produced output or used
+   tools, so a queued retry is not proof that nothing happened. "Handoff to new thread" is a manual button: it opens a new thread that
+   refers to the old one, and you choose the provider and model. It does not replace this
+   step, so check and cancel the old thread's queued retry yourself. In bb 0.49.0 a pending
+   retry survives a restart, so restarting the app does not cancel it. The workspace owner
+   can check with `bb provider-retry status <thread-id>` and cancel with
+   `bb provider-retry cancel <thread-id>`; replace `<thread-id>` with the affected thread's
+   ID. Check status again before resuming or starting a replacement.
 2. **Reconcile what happened.** Read the partial output and the saved files, and treat them
    as `unverified: interrupted`. If anything may already have been sent, published, paid, or
    deleted, check the sent mail, the published page, or the payment record. If you cannot
@@ -241,9 +367,11 @@ back. Text that exists only in chat is `not saved`.
 
 Core references checked in September 2026. BB permission inheritance and pending-retry
 behaviour rechecked against 0.45.0 on October 8, 2026. Hook and usage-pool details checked on
-October 27, 2026; other references retain their earlier date. Vendor pages and app interfaces
-change; re-check a detail before relying on it. The reasoning behind the October 27 changes
-is in [FIELD-NOTES.md](FIELD-NOTES.md).
+October 27, 2026; other references retain their earlier date. Model placement, limits, and
+handoff were rechecked on November 18, 2026 against bb 0.49.0. Vendor pages and app
+interfaces change; re-check a detail before relying on it. The reasoning behind the October
+27 changes is in [FIELD-NOTES.md](FIELD-NOTES.md). The November 18 changes are in
+[FIELD-NOTES-2026-11.md](FIELD-NOTES-2026-11.md).
 
 | Point | Basis |
 |-------|-------|
@@ -252,10 +380,14 @@ is in [FIELD-NOTES.md](FIELD-NOTES.md).
 | Parallel reading is safer than parallel editing | Vendor docs: [Codex subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents); [Claude Code agent teams](https://code.claude.com/docs/en/agent-teams) |
 | Helpers multiply usage | Vendor docs: [Claude Code costs](https://code.claude.com/docs/en/costs); [Codex subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents) |
 | bb permission inheritance and pending retries | bb 0.45.0 official guides: [threads](https://github.com/get-bb/bb/blob/desktop-v0.45.0/packages/templates/src/templates/bb-guide-threads.md), [providers](https://github.com/get-bb/bb/blob/desktop-v0.45.0/packages/templates/src/templates/bb-guide-providers.md); checked Oct 8, 2026 |
-| Other bb worktree and plugin guidance | September reference, bb 0.43.1: [environments](https://github.com/get-bb/bb/blob/desktop-v0.43.1/packages/templates/src/templates/bb-guide-environments.md), [configuration](https://github.com/get-bb/bb/blob/desktop-v0.43.1/docs/configuration.md), [Tasks](https://github.com/get-bb/bb/blob/desktop-v0.43.1/plugins/tasks/PLUGIN_OVERVIEW.md), [Workflows](https://github.com/get-bb/bb/blob/desktop-v0.43.1/plugins/workflows/PLUGIN_OVERVIEW.md); verify against your installed version |
+| Other bb worktree and plugin guidance | bb 0.49.0: [environments](https://github.com/get-bb/bb/blob/desktop-v0.49.0/packages/templates/src/templates/bb-guide-environments.md), [configuration](https://github.com/get-bb/bb/blob/desktop-v0.49.0/docs/configuration.md), [Tasks](https://github.com/get-bb/bb/blob/desktop-v0.49.0/plugins/tasks/PLUGIN_OVERVIEW.md), [Workflows](https://github.com/get-bb/bb/blob/desktop-v0.49.0/plugins/workflows/PLUGIN_OVERVIEW.md); the September 2026 check used 0.43.1; verify against your installed version |
 | A hook can block before an action; after it, a hook cannot undo the action but can change what the model is shown | Vendor docs: [Claude Code hooks](https://code.claude.com/docs/en/hooks); [Codex hooks](https://learn.chatgpt.com/docs/hooks); checked Oct 27, 2026 |
 | Apps and models on one subscription can share a usage pool | Vendor docs: [Cursor models and pricing](https://cursor.com/docs/models-and-pricing); checked Oct 27, 2026 |
 | Fresh reviews caught problems that earlier passes missed; review rounds that added scope created new problems | The author's own project experience in 2026. Not a benchmark |
 | Different-family review, one writer, three rounds, `unverified` labels, approval through the task, a brief's stop winning, a limit stopping one route | This kit's recommendation, not a vendor requirement |
+| bb 0.49.0 handoff and provider retry | bb 0.49.0 guides, read November 18, 2026: [threads](https://github.com/get-bb/bb/blob/desktop-v0.49.0/packages/templates/src/templates/bb-guide-threads.md), [plugins](https://github.com/get-bb/bb/blob/desktop-v0.49.0/packages/templates/src/templates/bb-guide-plugins.md). On the author's bb 0.49.0, the provider-retry skill says a pending retry survives a restart. Those two guides do not repeat that sentence |
+| A helper with no model of its own can run as its parent | Vendor docs, read November 18, 2026: [Claude Code subagents](https://code.claude.com/docs/en/sub-agents); [Codex subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents). Worded in [The same roles in every app](#the-same-roles-in-every-app) only as far as those pages go |
+| Claude session and weekly limits; fast mode billed apart from the allowance | Read November 18, 2026. The session-limit and weekly-limit messages are a seat window shared across models ([costs](https://code.claude.com/docs/en/costs)). Weekly limits apply across models, and some plans also have a separate weekly limit for one model ([usage and length limits](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)). On Claude Code subscription plans, fast mode is usage credits and is not included in the subscription rate limits ([fast mode](https://code.claude.com/docs/en/fast-mode)). Check your vendor for other plans |
+| Job classes, the five rules, rules that name no model, the triage, the owner's yes on rule wording | This kit's recommendation, from the author's own usage records ([November field notes](FIELD-NOTES-2026-11.md)) |
 
-No speed, quality, or cost benefit is measured or promised here.
+The job classes and rules rest on the author's own records. No speed, quality, or cost benefit is promised.

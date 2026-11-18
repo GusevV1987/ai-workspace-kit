@@ -10,12 +10,24 @@
 
 ---
 
+## ORDER OF WORK
+
+1. Name the outcome and the first real item.
+2. Get that one item through the whole path, rough, with what already exists.
+3. Then harden.
+
+Routine technical choices are the agent's. The "Ask first" list keeps its checks.
+
+---
+
 ## HOW TO COMMUNICATE
 
 1. Plain language unless I ask for depth.
 2. Lead with the outcome.
 3. Challenge weak assumptions.
 4. When accuracy matters, label `[Fact]`, `[Hypothesis]`, or `[Unconfirmed]`.
+5. For multi-step work, say first whether the whole request is complete, in progress, or waiting, and on whom.
+6. At hand-back, end with Actions: what only I can do and what it unblocks; at most one optional suggestion; or "Actions: No action needed."
 
 ---
 
@@ -26,8 +38,9 @@
 - Once I approve a task, carry it through; its routine steps need no new approval. Ask again when the effect, target, access, cost, or risk changes. A stop written into a task's brief wins over this.
 - Items under "Ask first" need my approval for that exact action. An exact approval I have already given, such as one delegated sign-in flow, stays valid within its written limits until it expires or I withdraw it. No model can grant itself access.
 - Fit checks to the change, and keep every check the project requires.
-- Prefer a capable model for important work. Do not pin a vendor's current model ID in this file.
-- Quality over speed for planning and debugging. Faster models only for low-stakes bulk work.
+- The most capable model I have leads and keeps the hard work. Routine work goes to a tool or a smaller model. Do not pin a vendor's current model ID in this file. Today's names are in [MODEL-CHOICE.md](MODEL-CHOICE.md).
+- Before changing a tool setting, infrastructure, or a model name, read the vendor's current documentation and say which page and date you used.
+- A change to the wording of these rules needs my yes, shown before and after.
 
 ---
 
@@ -92,4 +105,4 @@ Before you share any copy, review every file, its metadata, and any git history 
 
 ---
 
-*Last updated: 2026-10-27*
+*Last updated: 2026-11-18*

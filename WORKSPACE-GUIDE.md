@@ -55,7 +55,7 @@ If `open.md` and handoff disagree, **open.md wins**.
 | Cursor | [examples/cursor-rule.mdc](examples/cursor-rule.mdc) — [rules](https://cursor.com/docs/rules) |
 | ChatGPT / chat-only | [examples/chatgpt-custom-instructions.md](examples/chatgpt-custom-instructions.md) — attach real files; Custom Instructions cannot read disk |
 | Codex / repo tools | Root [AGENTS.md](AGENTS.md) — [docs](https://learn.chatgpt.com/docs/agent-configuration/agents-md) |
-| bb | [BB-QUICKSTART.md](BB-QUICKSTART.md) (primary). Optional inject: workspace `.bb/AGENTS.md` ([bb configuration](https://github.com/get-bb/bb/blob/desktop-v0.43.1/docs/configuration.md)) |
+| bb | [BB-QUICKSTART.md](BB-QUICKSTART.md) (primary). Optional inject: workspace `.bb/AGENTS.md` ([bb configuration](https://github.com/get-bb/bb/blob/desktop-v0.49.0/docs/configuration.md)) |
 | Anything else | `Read START.md and follow it` |
 
 ---
@@ -74,7 +74,9 @@ will be sent or published does.
 One writer of shared memory per close. Helpers return work in chat.
 
 Choosing a mode, briefing helpers, costs, and recovering from interruptions:
-[ORCHESTRATION.md](ORCHESTRATION.md).
+[ORCHESTRATION.md](ORCHESTRATION.md). Which work stays with the lead:
+[Place work by job class](ORCHESTRATION.md#place-work-by-job-class). Which model
+for a request: [MODEL-CHOICE.md](MODEL-CHOICE.md).
 
 ---
 
@@ -101,3 +103,11 @@ Fuller template (roles, budget, stop rule, restart point) with a filled example:
 Add a skill, an agent card, or a `context/` note when you keep asking for the
 same missing piece. Day-one skills are `start` and `close`. See
 [skills/README.md](skills/README.md).
+
+Keep always-loaded files short. When a rule file grows, move its reference detail to
+a companion file that is read on demand, and leave a pointer.
+
+A role such as a CTO can be called when needed instead of living in the always-loaded
+rules: [examples/role.md](examples/role.md).
+
+Connectors to your other tools: [CONNECTORS.md](CONNECTORS.md).

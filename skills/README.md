@@ -5,6 +5,9 @@ Reusable workflows. Day one: **start** and **close**. The rest is optional.
 Slash commands (`/start`) work only in tools that actually have skills.
 Otherwise: `Read skills/<name>/SKILL.md and follow it.`
 
+Optional planning skills (`scope`, `office-hours`, `plan-ceo-review`) come after the
+[order of work](../MASTER.md#order-of-work): one real item end to end before a framework.
+
 ---
 
 ## Included

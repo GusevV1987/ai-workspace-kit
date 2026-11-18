@@ -40,7 +40,23 @@ is a short map of both paths and existing tool links.
 
 ---
 
+## After a first task
+
+| You want to | Read |
+|---|---|
+| Choose a model for a request, understand a usage limit, see your usage | [MODEL-CHOICE.md](MODEL-CHOICE.md) |
+| Use a reviewer or helpers across several models | [ORCHESTRATION.md](ORCHESTRATION.md) |
+| Let a model reach your chat, mail, calendar, or documents safely | [CONNECTORS.md](CONNECTORS.md) |
+
+These pages are background for people who already work this way. They are not a third way in.
+
+---
+
 ## Field notes
+
+**November 2026:** [Spend the top model on judgment](FIELD-NOTES-2026-11.md). Which work
+stays with the most capable model, and what the author measured. Read it after a first
+task; it is background, not a third way in.
 
 **October 2026:** [Let approved work finish](FIELD-NOTES.md). When AI agents should keep
 going, which steps stay with a person, and what changed in this kit. Read it after a first

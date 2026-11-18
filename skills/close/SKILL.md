@@ -4,8 +4,8 @@ description: |
   Record this session in the shared memory folder. Use when: "/close", "wrap up",
   "done for today", "end session", or "that's it". Finishing a helper task is not
   a close. Helpers never write shared memory, even if a parent says "close".
-version: 2.0.0
-date: 2026-09-08
+version: 2.1.0
+date: 2026-11-18
 ---
 
 # Close Session
@@ -40,23 +40,16 @@ and `AGENTS.md` keep this block identical.
 ```markdown
 ## YYYY-MM-DD HH:MM — <short title> (<tool>)
 
-**Summary** — one line: what this session accomplished.
+**Outcome** — the result, in one or two plain sentences.
 
-**Work done**
-- <what changed / what was produced>
+**Where** — the file, folder or link that holds the work.
 
 **Next steps**
-- <what the next session should do>
-
-**Decisions** — include ONLY if a real decision was made
-- <decision> — <why>
-
-**Blockers** — include ONLY if something is blocking progress
-- <what is stuck and what would unblock it>
+- <what is open and who owns it, or `- None`>
 ```
 
-- Always include heading, Summary, Work done, Next steps (`- None` is fine).
-- Decisions / Blockers only when they happened.
+- Always include heading, Outcome, Where, and Next steps (`- None` is fine).
+- A decision that was actually made during the session goes in `MEMORY.md` (Step 4). A blocker is a Next steps line.
 - Time is local finish time. Add a zone if you move between timezones (`14:30 UTC`).
 - **No session numbers.** The heading is the identity.
 
@@ -154,6 +147,7 @@ Name each destination:
 - `memory/YYYY-MM-DD.md` — this session's one close block (recorded file + heading)
 - `memory/handoff.md` — **proposed** full file, only if Step 2 allows replacement
 - `memory/open.md` — **proposed** row edits (full file only against a supplied unchanged copy)
+- `MEMORY.md` — **proposed** lines, only if this session made a decision worth keeping (Step 4)
 
 Replacement of a full file or full block is allowed only against that unchanged copy.
 If the file may have changed: **stop** all shared-memory proposals except asking for

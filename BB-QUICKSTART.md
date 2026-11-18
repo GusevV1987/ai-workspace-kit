@@ -15,8 +15,8 @@ for setup help. No model can grant itself missing access.
 ## What you need
 
 - bb ([download the desktop app](https://github.com/get-bb/bb/releases/tag/desktop-latest);
-  product notes: [bb README](https://github.com/get-bb/bb/blob/desktop-v0.43.1/README.md),
-  [bb-app](https://github.com/get-bb/bb/blob/desktop-v0.43.1/packages/bb-app/README.md))
+  product notes: [bb README](https://github.com/get-bb/bb/blob/desktop-v0.49.0/README.md),
+  [bb-app](https://github.com/get-bb/bb/blob/desktop-v0.49.0/packages/bb-app/README.md))
 - At least one **configured provider** (the AI you already use; bb can pick up
   existing sign-in — see the bb-app README)
 - For review: a **second model family** (another provider you already have, or
@@ -25,7 +25,7 @@ for setup help. No model can grant itself missing access.
 You do **not** need to install kit skills or run a command-line setup to do this
 exercise. In the thread, tell the model to read files.
 
-bb can also inject a workspace `.bb/AGENTS.md` ([configuration](https://github.com/get-bb/bb/blob/desktop-v0.43.1/docs/configuration.md)).
+bb can also inject a workspace `.bb/AGENTS.md` ([configuration](https://github.com/get-bb/bb/blob/desktop-v0.49.0/docs/configuration.md)).
 That is optional. `Read START.md` is enough.
 
 ---
@@ -45,6 +45,10 @@ are your real notes. Do not copy DEMO rows from `examples/`.
 Open **this unzipped folder** as the project. Start a thread. Choose a provider
 you already have. (Surfaces change; if you cannot open a folder, ask the
 workspace owner — see Troubleshooting.)
+
+Choose the model in the composer before you send. For this exercise a small or
+everyday model at a medium reasoning level is enough
+([MODEL-CHOICE.md](MODEL-CHOICE.md)).
 
 ## 3. First useful task (fiction only)
 
@@ -189,6 +193,6 @@ huddle filled in, is [examples/task-brief.md](examples/task-brief.md).
 | `/close` or `/start` does nothing | Type `wrap up` or `Read START.md and begin.` Slash commands are optional. |
 | Draft only in chat | That is **not saved**. Paste it into `drafts/friday-huddle.md` yourself, or ask for exact paste text with destinations named. |
 | Unsure whose row to edit | Leave unrelated `open.md` rows alone. |
-| Usage-limit message mid-draft | Keep the draft and treat it as unverified. Do not switch accounts. Find the affected thread's pending retry above the message box, with its reason and time. Check and cancel it before continuing; restarting the app does not cancel it. Whether the draft waits or moves to another tool you already use is your decision, and a stop written in your brief wins. See [When something breaks](ORCHESTRATION.md#when-something-breaks). |
+| Usage-limit message mid-draft | Keep the draft and treat it as unverified. Do not switch accounts. For a session or weekly limit, bb may queue a retry of the same message; look for it above the message box, with its reason and time, and do not assume it is there. It does not queue one for a credit or spend limit, and it does not move your work to another model. Before continuing: stop the thread if it is working again, cancel any pending retry, and check what was already saved or sent; restarting the app does not cancel a pending retry. Whether the draft waits or moves to another tool you already use is your decision, and a stop written in your brief wins. Which limit the message names decides what helps: see [When you hit a limit](MODEL-CHOICE.md#when-you-hit-a-limit) and [When something breaks](ORCHESTRATION.md#when-something-breaks). |
 | Thread failed or went quiet | Read that thread's own last output first. Stop it and cancel any waiting retry before starting a replacement, so two writers cannot resume. |
 | Reviewer's findings lost | Recover them if they were saved. If not, and the draft is unchanged, run the step 4 review again in a new thread. Never assume a pass. |
