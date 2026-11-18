@@ -1,8 +1,17 @@
 #!/usr/bin/env node
+import { realpathSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { HOOKS_REFUSAL, createService } from './lib/jobs.mjs';
 import { ELEVATED_REFUSALS, InputError, firstElevatedFlag, parseArgs, publicAuth, stripEmails } from './lib/cli.mjs';
+
+// True when this file is the script Node was started with. Node resolves links in the script's own path,
+// so both sides are resolved before comparing; a plugin folder reached through a link must still run.
+export function isEntry(moduleUrl, started = process.argv[1]) {
+  if (!started) return false;
+  const real = file => { try { return realpathSync(file); } catch { return path.resolve(file); } };
+  return real(started) === real(fileURLToPath(moduleUrl));
+}
 
 function present(result) {
   const copy = { ...result };
@@ -62,4 +71,4 @@ export async function main(argv = process.argv.slice(2), service = createService
   if (['failed', 'uncertain', 'not-ready'].includes(result.status)) process.exitCode = 1;
   return result;
 }
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();
+if (isEntry(import.meta.url)) await main();

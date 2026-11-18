@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile, readFile, readdir, stat, realpath, unlink } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, readdir, stat, realpath, unlink, symlink } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -8,7 +8,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import { ELEVATED_REFUSALS } from '../scripts/lib/cli.mjs';
 import { StreamResult } from '../scripts/lib/cli.mjs';
 import { JobStore, createService, runWorker, stateDirectory, HOOKS_REFUSAL } from '../scripts/lib/jobs.mjs';
-import { main } from '../scripts/cursor-companion.mjs';
+import { isEntry, main } from '../scripts/cursor-companion.mjs';
 import { mainElevated } from '../scripts/cursor-elevated.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -431,4 +431,24 @@ test('an answer that quotes the trust phrase stays a completed answer', async ()
   assert.equal(refused.result.status, 'failed');
   assert.match(refused.result.error, /--trust-workspace/);
   assert.equal(Object.hasOwn(refused.result, 'output'), false);
+});
+
+test('both scripts run when the plugin folder is reached through a link', async () => {
+  const dir = await mkdtemp(path.join(os.tmpdir(), 'cursor-link-'));
+  const home = path.join(dir, 'home');
+  const project = path.join(dir, 'project');
+  await mkdir(home);
+  await mkdir(project);
+  const linked = path.join(dir, 'plugin-link');
+  await symlink(root, linked, 'junction');
+  const env = { ...process.env, HOME: home, USERPROFILE: home };
+  for (const script of ['cursor-companion.mjs', 'cursor-elevated.mjs']) {
+    const run = spawnSync(process.execPath, [path.join(linked, 'scripts', script), 'status'], { cwd: project, env, encoding: 'utf8' });
+    assert.equal(run.status, 0, script);
+    assert.match(run.stdout, /This folder has no jobs\./, script);
+  }
+  const companionUrl = new URL('../scripts/cursor-companion.mjs', import.meta.url).href;
+  assert.equal(isEntry(companionUrl, path.join(linked, 'scripts', 'cursor-companion.mjs')), true);
+  assert.equal(isEntry(companionUrl, path.join(linked, 'scripts', 'cursor-elevated.mjs')), false);
+  assert.equal(isEntry(companionUrl, undefined), false);
 });

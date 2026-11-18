@@ -1,6 +1,6 @@
 {
   "name": "cursor",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Delegate reviews and coding tasks to your own Cursor CLI account",
   "author": {
     "name": "Vladimir Gusev"
