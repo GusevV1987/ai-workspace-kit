@@ -102,16 +102,12 @@ DEMO close heading shape (identity is the heading, not a session number):
 ```markdown
 ## 2026-03-27 16:40 — Lisbon outline (ChatGPT)
 
-**Summary** — Drafted a fictional Lisbon walking-tour outline.
+**Outcome** — Drafted a fictional Lisbon walking-tour outline. The tour stays fictional, with no real bookings.
 
-**Work done**
-- Wrote drafts/lisbon-outline.md
+**Where** — drafts/lisbon-outline.md
 
 **Next steps**
 - Add a fourth neighborhood if I still want it
-
-**Decisions**
-- Keep the tour fictional — no real bookings
 ```
 
 DEMO `open.md` row after that close (live files stay empty until you record for real):

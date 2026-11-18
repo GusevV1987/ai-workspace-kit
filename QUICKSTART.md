@@ -12,6 +12,9 @@ do not assume it is private automatically.
 **tool**) provides access. The selected **model** does the work. You do not need
 three subscriptions.
 
+Which model for a request, what a usage limit does, and how to see your usage:
+[MODEL-CHOICE.md](MODEL-CHOICE.md).
+
 Older link: [examples/bb.md](examples/bb.md) points at the bb guide. Extra
 two-model copy-paste: [examples/beginner.md](examples/beginner.md).
 

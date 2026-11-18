@@ -1,11 +1,16 @@
 ---
 name: review
 description: "Pre-landing code review. Catches structural issues that tests miss — scope drift, SQL safety, race conditions, trust boundary violations. Use when asked to review a PR, check a diff, or before merging."
-version: 1.0.0
-date: 2026-03-19
+version: 1.1.0
+date: 2026-11-18
 ---
 
 # Review
+
+This skill is the writer's own pre-landing check of its own change, so it may fix
+mechanical issues. It is not the independent review in
+[ORCHESTRATION.md](../../ORCHESTRATION.md#get-an-independent-review), where the reviewer
+is a different family, starts fresh, and edits nothing.
 
 ## The Rule
 
@@ -68,7 +73,7 @@ Every finding gets one of two treatments:
 | **AUTO-FIX** | Mechanical issues (typos, formatting, missing imports) — fix directly, one-line summary |
 | **ASK** | Judgment calls, design questions, ambiguous trade-offs — present to user with context |
 
-Do NOT leave read-only commentary. Every issue either gets fixed or gets a decision request.
+When you are the writer checking your own change, do not leave read-only commentary. Every issue either gets fixed or gets a decision request. When you review someone else's work, return findings only.
 
 ### Step 5: Documentation Check
 

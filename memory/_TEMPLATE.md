@@ -11,16 +11,9 @@ Long-term facts go in MEMORY.md. Unfinished work goes in memory/open.md.
 
 ## YYYY-MM-DD HH:MM — <short title> (<tool>)
 
-**Summary** — one line: what this session accomplished.
+**Outcome** — the result, in one or two plain sentences.
 
-**Work done**
-- <what changed / what was produced>
+**Where** — the file, folder or link that holds the work.
 
 **Next steps**
-- <what the next session should do>
-
-**Decisions** — include ONLY if a real decision was made
-- <decision> — <why>
-
-**Blockers** — include ONLY if something is blocking progress
-- <what is stuck and what would unblock it>
+- <what is open and who owns it, or `- None`>

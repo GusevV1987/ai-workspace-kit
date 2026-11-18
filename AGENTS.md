@@ -38,22 +38,16 @@ Every session records the same **close block** in `memory/YYYY-MM-DD.md` (newest
 ```markdown
 ## YYYY-MM-DD HH:MM — <short title> (<tool>)
 
-**Summary** — one line: what this session accomplished.
+**Outcome** — the result, in one or two plain sentences.
 
-**Work done**
-- <what changed / what was produced>
+**Where** — the file, folder or link that holds the work.
 
 **Next steps**
-- <what the next session should do>
-
-**Decisions** — include ONLY if a real decision was made
-- <decision> — <why>
-
-**Blockers** — include ONLY if something is blocking progress
-- <what is stuck and what would unblock it>
+- <what is open and who owns it, or `- None`>
 ```
 
-Always include heading + Summary + Work done + Next steps. No session numbers — the timestamp
+Always include heading, Outcome, Where, and Next steps. A decision worth keeping goes in
+`MEMORY.md`. A blocker is a Next steps line. No session numbers — the timestamp
 orders sessions. Then refresh `memory/handoff.md` **only if this block is the winning close**
 (later finish time; equal times → lower block in the log) **and** the current handoff has no
 next steps that exist only there — preserve those in `open.md` with original ownership first;
