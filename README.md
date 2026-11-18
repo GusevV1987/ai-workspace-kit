@@ -47,8 +47,11 @@ is a short map of both paths and existing tool links.
 | Choose a model for a request, understand a usage limit, see your usage | [MODEL-CHOICE.md](MODEL-CHOICE.md) |
 | Use a reviewer or helpers across several models | [ORCHESTRATION.md](ORCHESTRATION.md) |
 | Let a model reach your chat, mail, calendar, or documents safely | [CONNECTORS.md](CONNECTORS.md) |
+| Ask Codex or Grok for a review from inside the Claude desktop app | [CLAUDE-DESKTOP.md](CLAUDE-DESKTOP.md) |
 
 These pages are background for people who already work this way. They are not a third way in.
+
+The kit itself is Markdown. The one exception is optional: [CLAUDE-DESKTOP.md](CLAUDE-DESKTOP.md) describes two Claude Code plugins, one small adapter kept in [`plugins/cursor`](plugins/cursor/README.md) and one that OpenAI publishes. You can use everything else without installing either.
 
 ---
 
