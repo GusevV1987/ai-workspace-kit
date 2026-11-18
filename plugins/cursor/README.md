@@ -1,0 +1,17 @@
+# Cursor plugin
+
+This plugin lets Claude ask the Cursor program on your computer to answer a question, review a change, or carry out a task. It uses your own Cursor account. Claude brings the answer back.
+
+The commands are `/cursor:setup`, `/cursor:models`, `/cursor:task`, `/cursor:review`, `/cursor:status`, `/cursor:result`, and `/cursor:cancel`. Claude does not load these commands by itself; they load when you type them. The plugin has no helper that starts by itself. The only thing it pre-approves is its first script, during the turn of one of its own commands. Its scripts are ordinary Node programs: a rule you saved, or another plugin, can allow Claude to run Node programs without asking, and then the prompt described below does not appear.
+
+Setup, the model list, a question, a review, status, a saved result, and cancellation run without asking, in the folder Claude is working in at that moment (normally the folder you opened). The plugin starts Cursor in its read-only mode for these, in which the model does not edit files. Read-only mode does not limit your own Cursor settings outside the project, such as hooks in `~/.cursor/hooks.json`. These need an option that you type, and then ask first: `--write` (change files), `--trust-workspace` (a folder Cursor has not been told to trust), `--allow-fast` (a model whose id ends in `-fast`), `--workspace <folder>` (another folder), and `--allow-hooks` (a folder that has its own Cursor hooks file, `.cursor/hooks.json`). Without the option no prompt appears. A request without `--write` still runs, read-only, and uses a model run; the answer says no file was changed. A request for a `-fast` model, or in a folder with a hooks file, stops before Cursor is started, with one sentence that names the option. In a folder Cursor does not trust, Cursor is started and refuses, and the plugin prints one sentence that names the option. Without `--workspace` the request runs in the current folder.
+
+The scripts cannot tell who typed an option. That is why those options sit behind Claude Code's permission prompt. The prompt exists in Manual mode. A mode that skips prompts, or a saved always-allow rule, removes it.
+
+The answer is Cursor's own text, with control characters removed and very long output cut. It can contain anything from the files Cursor read. The Cursor program's error text is not shown or stored: a failed run shows the plugin's own fixed sentence. If Cursor had already written part of an answer when the run ended without a result, that part is kept and shown, followed by the plugin's sentence that the run did not complete.
+
+All records are in `~/.claude/cursor-companion/` for every project. Each record holds your request, Cursor's answer, the model you asked for and the label Cursor reported, the folder path, the times, the plugin's own job id, Cursor's session id and request id, your home folder path, the path of the Cursor program, and the process ids of the run. `/cursor:setup` also shows the version of the Cursor program. A job is shown only in the folder that started it. Anything running under your account can read those files. Deleting the folder removes the plugin's copies but not Cursor's own history.
+
+You name the model, or save one with `/cursor:setup --default-model <id>`. The plugin has no built-in model and refuses `auto`. The answer names the requested model. The served model is not verified.
+
+Install it as the kit's `CLAUDE-DESKTOP.md` page describes. This was tested on a Mac only.

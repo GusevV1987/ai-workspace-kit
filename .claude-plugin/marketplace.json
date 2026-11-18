@@ -1,0 +1,29 @@
+{
+  "name": "ai-workspace-kit",
+  "description": "A second review or a bounded task from Codex or the Cursor CLI, with Claude coordinating.",
+  "owner": {
+    "name": "Vladimir Gusev"
+  },
+  "plugins": [
+    {
+      "name": "cursor",
+      "source": "./plugins/cursor",
+      "version": "0.5.0",
+      "description": "Delegate reviews and coding tasks to your own Cursor CLI account"
+    },
+    {
+      "name": "codex",
+      "description": "OpenAI's own plugin. Use Codex from Claude Code to review code or delegate tasks.",
+      "version": "1.0.6",
+      "author": {
+        "name": "OpenAI"
+      },
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/openai/codex-plugin-cc.git",
+        "path": "plugins/codex",
+        "sha": "db52e28f4d9ded852ab3942cea316258ae4ef346"
+      }
+    }
+  ]
+}
